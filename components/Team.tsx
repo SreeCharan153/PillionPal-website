@@ -74,7 +74,7 @@ export default function Team() {
                   <h3 className="text-xl font-semibold text-[#008955] mb-2">
                     {member.name}
                   </h3>
-                  <p className="text-foreground/80 mb-4">{member.role}</p>
+                  <p className="text-foreground/80 mb-4">{/*member.role*/}</p>
                   
                   {/* LinkedIn Button */}
                   <motion.a
