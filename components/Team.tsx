@@ -34,7 +34,7 @@ const teamMembers = [
     name: "Raj Kumar Varada",
     //role: "Web Developer",
     image: "/raj.jpg",
-    linkedin: "https://www.linkedin.com/in/varada-raj-kumar"
+    linkedin: "https://www.linkedin.com/in/rajkumar-varada/"
   },
 ];
 
