@@ -12,7 +12,7 @@ export default function Contact() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-[#008955] text-center mb-16">
             Contact Us

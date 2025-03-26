@@ -26,7 +26,7 @@ export default function MissionVision() {
                 Our Mission
               </h3>
               <p className="text-foreground/80 leading-relaxed">
-                To make daily commuting easier, cheaper, and more accessible. We're committed to providing a reliable platform that connects riders with bike owners, creating a win-win situation for both parties.
+                To make daily commuting easier, cheaper, and more accessible. We&#39;re committed to providing a reliable platform that connects riders with bike owners, creating a win-win situation for both parties.
               </p>
             </div>
             
