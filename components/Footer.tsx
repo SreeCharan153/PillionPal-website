@@ -29,7 +29,7 @@ export default function Footer() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 className="flex items-center gap-3"
               >
                 <div className="relative">
@@ -59,7 +59,7 @@ export default function Footer() {
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                   >
                     <Link 
                       href={`#${item.toLowerCase().replace(/\s+/g, '')}`}
@@ -80,7 +80,7 @@ export default function Footer() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   className="text-foreground/70 text-sm flex items-center gap-2"
                 >
                   <MapPin size={16} className="text-[#008955]" />
@@ -90,7 +90,7 @@ export default function Footer() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: 0.1 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                 >
                   <a 
                     href="mailto:tech.collegeride@gmail.com"
@@ -120,7 +120,7 @@ export default function Footer() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.2, delay: index * 0.1 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     className="bg-card hover:bg-[#008955]/10 p-2.5 rounded-full transition-colors group"
                   >
                     <social.icon size={20} className="text-foreground/70 group-hover:text-[#008955] transition-colors" />
