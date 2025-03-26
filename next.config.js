@@ -1,26 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  eslint: { ignoreDuringBuilds: true },
-  images: { unoptimized: true },
-  trailingSlash: true, // Ensures files are served properly
-
-  async rewrites() {
-    return [
-      {
-        source: '/googlea3a507fef4c4724e7.html',
-        destination: '/public/googlea3a507fef4c4724e7.html',
-      },
-    ];
+  eslint: {
+    ignoreDuringBuilds: true,
   },
-
+  images: { unoptimized: true },
+  // Add webpack configuration to handle caching more reliably
   webpack: (config, { dev, isServer }) => {
     if (dev && !isServer) {
+      // Disable cache in development to prevent cache-related issues
       config.cache = false;
     }
     return config;
   },
-  optimizeFonts: false,
+  // Add font optimization configuration
+  optimizeFonts: false, // Disable font optimization to prevent timeout issues
 };
 
 module.exports = nextConfig;
