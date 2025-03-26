@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "PillionPal - Affordable Bike Rides",
     description: "Book affordable and reliable bike rides with PillionPal.",
-    url: "https://pillionpal.com",
+    url: "https://pillionpal.vercel.app/",
     siteName: "PillionPal",
     images: [
       {
