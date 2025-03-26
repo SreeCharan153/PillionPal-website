@@ -19,18 +19,18 @@ export default function Contact() {
           </h2>
           
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <a
+          href="mailto:tech.collegeride@gmail.com">
             <Card className="p-8 text-center hover:shadow-xl transition-shadow bg-card">
               <Mail className="h-8 w-8 text-[#008955] mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-[#008955] mb-2">
                 Email Us
               </h3>
-              <a
-                href="mailto:tech.collegeride@gmail.com"
-                className="text-foreground/80 hover:text-[#008955] transition-colors"
-              >
+              <p className="text-foreground/80 hover:text-[#008955] transition-colors">
                 tech.collegeride@gmail.com
-              </a>
+              </p>
             </Card>
+            </a>
             
             <Card className="p-8 text-center hover:shadow-xl transition-shadow bg-card">
               <MapPin className="h-8 w-8 text-[#008955] mx-auto mb-4" />
