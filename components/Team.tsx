@@ -52,7 +52,7 @@ export default function Team() {
             Meet the Team
           </h2>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
             {teamMembers.map((member, index) => (
               <motion.div
                 key={member.name}
@@ -61,22 +61,23 @@ export default function Team() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: false }}
               >
-                <Card className="p-6 text-center hover:shadow-xl transition-all duration-300 group bg-card relative overflow-hidden">
-                  <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden relative group-hover:scale-95 transition-transform duration-300">
+                <Card className="h-[280px] p-6 flex flex-col items-center justify-between hover:shadow-xl transition-all duration-300 group bg-card relative">
+                  <div className="w-24 h-24 rounded-full overflow-hidden relative group-hover:scale-95 transition-transform duration-300">
                     <Image
                       src={member.image}
                       alt={member.name}
-                      width={128}
-                      height={128}
+                      width={96}
+                      height={96}
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#008955] mb-2">
-                    {member.name}
-                  </h3>
-                  <p className="text-foreground/80 mb-4">{/*member.role*/}</p>
                   
-                  {/* LinkedIn Button */}
+                  <div className="text-center">
+                    <h3 className="text-lg font-semibold text-[#008955] mb-1 line-clamp-2">
+                      {member.name}
+                    </h3>
+                  </div>
+                  
                   <motion.a
                     href={member.linkedin}
                     target="_blank"
@@ -88,7 +89,6 @@ export default function Team() {
                     <span>View Profile</span>
                   </motion.a>
 
-                  {/* Hover Effect Overlay */}
                   <div className="absolute inset-0 bg-[#008955]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 </Card>
               </motion.div>
