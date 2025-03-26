@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/react";
+import Head from "next/head";
 
 // ✅ Optimized font loading for better performance
 const inter = Inter({
@@ -42,6 +43,10 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <Head>
+        {/* ✅ Google Search Console Verification */}
+        <meta name="google-site-verification" content="WfIZz18GHMJ7YCVbbNtXrM0QOcOR5bz7B1VX54U3-68" />
+      </Head>
       <body className={`${inter.className} antialiased`}>
         {/* ThemeProvider for Dark/Light Mode Support */}
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
