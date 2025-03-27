@@ -23,7 +23,7 @@ export default function AboutUs() {
                 What is PillionPal?
               </h3>
               <p className="text-foreground/80 leading-relaxed">
-                We provide a cost-effective and convenient ride-sharing solution for students and office commuters. Our platform connects riders with reliable bike owners, making daily transportation more accessible and affordable.
+                We provide a cost-effective and convenient ride-sharing solution for students and office commuters. Our platform connects riders with Pillions , who needs a quick rides to making daily transportation more accessible and affordable.
               </p>
             </Card>
             
