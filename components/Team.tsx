@@ -41,7 +41,7 @@ export default function Team() {
         <motion.div
           className="absolute w-full h-full transition-all duration-500 
             bg-gradient-to-br from-[#f0fdf4] to-[#ffffff] dark:from-[#042f22] dark:to-[#000000]"
-          animate={{ y: [0, 20, 0] }}
+          //animate={{ y: [0, 20, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
