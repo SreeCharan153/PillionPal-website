@@ -6,9 +6,16 @@ import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const nodes = [];
+  interface Node {
+    x: number;
+    y: number;
+    radius: number;
+    speedX: number;
+    speedY: number;
+  }
+  const nodes = useRef<Node[]>([]);
   const connections = [];
-  let mouse = { x: -100, y: -100 };
+  const mouse = useRef({ x: -100, y: -100 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -22,7 +29,7 @@ export default function HeroSection() {
 
     // 🌐 Generate Nodes (Neurons)
     for (let i = 0; i < 100; i++) {
-      nodes.push({
+      nodes.current.push({
         x: Math.random() * width,
         y: Math.random() * height,
         radius: Math.random() * 2 + 1, // 🔹 Smaller dots
@@ -33,8 +40,8 @@ export default function HeroSection() {
 
     // 🎯 Cursor Tracking
     const updateMouse = (e: MouseEvent) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
+      mouse.current.x = e.clientX;
+      mouse.current.y = e.clientY;
     };
 
     // 🧠 Draw Neural Network with Dynamic Linking
@@ -42,7 +49,7 @@ export default function HeroSection() {
       if (!ctx) return;
       ctx.clearRect(0, 0, width, height);
 
-      for (let node of nodes) {
+      for (let node of nodes.current) {
         // 🏃 Nodes Move Freely
         node.x += node.speedX;
         node.y += node.speedY;
@@ -59,10 +66,10 @@ export default function HeroSection() {
       }
 
       // 🔗 Draw Dynamic Connections
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          let nodeA = nodes[i];
-          let nodeB = nodes[j];
+      for (let i = 0; i < nodes.current.length; i++) {
+        for (let j = i + 1; j < nodes.current.length; j++) {
+          let nodeA = nodes.current[i];
+          let nodeB = nodes.current[j];
           let distance = Math.hypot(nodeA.x - nodeB.x, nodeA.y - nodeB.y);
 
           if (distance < 140) {
@@ -77,15 +84,15 @@ export default function HeroSection() {
       }
 
       // 🖱️ Neural Connection with Cursor
-      for (let node of nodes) {
-        let dx = mouse.x - node.x;
-        let dy = mouse.y - node.y;
+      for (let node of nodes.current) {
+        let dx = mouse.current.x - node.x;
+        let dy = mouse.current.y - node.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < 150) {
           ctx.beginPath();
           ctx.moveTo(node.x, node.y);
-          ctx.lineTo(mouse.x, mouse.y);
+          ctx.lineTo(mouse.current.x, mouse.current.y);
           ctx.strokeStyle = `rgba(0, 255, 255, ${1 - distance / 150})`;
           ctx.lineWidth = 1.2;
           ctx.stroke();
