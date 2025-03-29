@@ -143,7 +143,8 @@ export default function HeroSection() {
           </p>
 
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button className="bg-[#007144] text-white px-10 py-4 text-lg rounded-full shadow-lg hover:shadow-xl">
+            <Button className="bg-[#007144] text-white px-10 py-4 text-lg rounded-full shadow-lg hover:shadow-xl"
+            onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}>
               Learn More About Us
             </Button>
           </motion.div>
