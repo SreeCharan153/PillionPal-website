@@ -3,13 +3,18 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import { SunIcon, MoonIcon } from "@heroicons/react/24/outline";
+import { useTheme } from "next-themes"; // ✅ Import Next.js Theme Hook
 
 export default function HeroSection() {
+  const { theme, setTheme } = useTheme(); // ✅ Use Global Theme
+  const isDarkMode = theme === "dark"; // ✅ Sync with Global Theme
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
   useEffect(() => {
     const nodes: any[] = [];
     const mouse = { x: -100, y: -100 };
-    const isMobile = window.innerWidth < 768; // 📱 Check if mobile
+    const isMobile = window.innerWidth < 768;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -19,22 +24,20 @@ export default function HeroSection() {
     canvas.width = width;
     canvas.height = height;
 
-    // 🌐 Adjust the number of nodes based on screen size
-    const totalNodes = isMobile ? 50 : 100; // 📱 Reduce nodes for mobile
-    const linkDistance = isMobile ? 80 : 140; // 📱 Smaller link range
-    const cursorLinkDistance = isMobile ? 100 : 150; // 📱 Reduce cursor link range
+    const totalNodes = isMobile ? 50 : 100;
+    const linkDistance = isMobile ? 80 : 140;
+    const cursorLinkDistance = isMobile ? 100 : 150;
 
     for (let i = 0; i < totalNodes; i++) {
       nodes.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        radius: Math.random() * (isMobile ? 1.5 : 2) + 1, // 📱 Smaller dots on mobile
-        speedX: Math.random() * 0.6 - 0.3, // 📱 Slower movement
+        radius: Math.random() * (isMobile ? 1.5 : 2) + 1,
+        speedX: Math.random() * 0.6 - 0.3,
         speedY: Math.random() * 0.6 - 0.3,
       });
     }
 
-    // 🎯 Cursor Tracking
     const updateMouse = (e: MouseEvent | TouchEvent) => {
       if ("clientX" in e) {
         mouse.x = e.clientX;
@@ -45,28 +48,25 @@ export default function HeroSection() {
       }
     };
 
-    // 🧠 Draw Neural Network with Mobile Optimizations
     const draw = () => {
       if (!ctx) return;
-      ctx.clearRect(0, 0, width, height);
+
+      ctx.fillStyle = isDarkMode ? "#121212" : "#f0fdf4";
+      ctx.fillRect(0, 0, width, height);
 
       for (let node of nodes) {
-        // 🏃 Nodes Move Freely
         node.x += node.speedX;
         node.y += node.speedY;
 
-        // 🌌 Keep Nodes Inside the Canvas
         if (node.x < 0 || node.x > width) node.speedX *= -1;
         if (node.y < 0 || node.y > height) node.speedY *= -1;
 
-        // 🟢 Draw Nodes
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(0, 255, 153, 0.7)";
+        ctx.fillStyle = isDarkMode ? "rgba(0, 255, 153, 0.7)" : "rgba(0, 137, 85, 0.7)";
         ctx.fill();
       }
 
-      // 🔗 Draw Dynamic Connections
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           let nodeA = nodes[i];
@@ -77,14 +77,15 @@ export default function HeroSection() {
             ctx.beginPath();
             ctx.moveTo(nodeA.x, nodeA.y);
             ctx.lineTo(nodeB.x, nodeB.y);
-            ctx.strokeStyle = `rgba(0, 255, 153, ${1 - distance / linkDistance})`;
+            ctx.strokeStyle = isDarkMode
+              ? `rgba(0, 255, 255, ${1 - distance / linkDistance})`
+              : `rgba(0, 100, 63, ${1 - distance / linkDistance})`;
             ctx.lineWidth = 0.8;
             ctx.stroke();
           }
         }
       }
 
-      // 🖱️ Neural Connection with Cursor
       for (let node of nodes) {
         let dx = mouse.x - node.x;
         let dy = mouse.y - node.y;
@@ -94,7 +95,9 @@ export default function HeroSection() {
           ctx.beginPath();
           ctx.moveTo(node.x, node.y);
           ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(0, 255, 255, ${1 - distance / cursorLinkDistance})`;
+          ctx.strokeStyle = isDarkMode
+            ? `rgba(0, 255, 255, ${1 - distance / cursorLinkDistance})`
+            : `rgba(0, 100, 63, ${1 - distance / cursorLinkDistance})`;
           ctx.lineWidth = 1.2;
           ctx.stroke();
         }
@@ -104,17 +107,21 @@ export default function HeroSection() {
     };
 
     window.addEventListener("mousemove", updateMouse);
-    window.addEventListener("touchmove", updateMouse); // 📱 Support touch devices
+    window.addEventListener("touchmove", updateMouse);
     draw();
 
     return () => {
       window.removeEventListener("mousemove", updateMouse);
       window.removeEventListener("touchmove", updateMouse);
     };
-  }, []);
+  }, [isDarkMode]);
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-[#121212] pt-16 overflow-hidden">
+    <div
+      className={`relative flex items-center justify-center min-h-screen transition-colors duration-500 ${
+        isDarkMode ? "bg-[#121212]" : "bg-[#f0fdf4]"
+      } pt-16 overflow-hidden`}
+    >
       {/* 🧠 Neural Background */}
       <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" />
 
@@ -126,22 +133,17 @@ export default function HeroSection() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="space-y-8"
         >
-          {/* ✨ Title with Neural Glow */}
-          <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#00ff99] to-[#00b36b] bg-clip-text text-transparent drop-shadow-lg">
-            PillionPal – Cut Cost Not Convenience
+          <h1 className={`text-5xl md:text-6xl font-bold text-[#00ff99]`}>
+            PillionPal – Cut Cost, Not Convenience
           </h1>
 
-          {/* 🏍️ Subtitle */}
-          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-            Affordable & reliable bike rides at your fingertips. Save money while reaching your destination faster.
+          <p className={`text-lg md:text-xl ${isDarkMode ? "text-gray-300" : "text-gray-700"} max-w-2xl mx-auto`}>
+            <span className={isDarkMode ? "text-[#00ff99] font-semibold" : "text-[#008955] font-semibold"}>Affordable</span> &{" "}
+            <span className={isDarkMode ? "text-[#00b36b] font-semibold" : "text-[#005c3d] font-semibold"}>reliable</span> bike rides at your fingertips.
           </p>
 
-          {/* 🎯 Call-to-Action Button */}
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button
-              className="bg-[#008955] px-10 py-4 text-lg rounded-full text-white shadow-lg backdrop-blur-md transition-all duration-300 transform hover:shadow-xl hover:bg-[#007144]"
-              onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-            >
+            <Button className="bg-[#007144] text-white px-10 py-4 text-lg rounded-full shadow-lg hover:shadow-xl">
               Learn More About Us
             </Button>
           </motion.div>
