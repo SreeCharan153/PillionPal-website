@@ -6,16 +6,9 @@ import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  interface Node {
-    x: number;
-    y: number;
-    radius: number;
-    speedX: number;
-    speedY: number;
-  }
-  const nodes = useRef<Node[]>([]);
-  const connections = [];
-  const mouse = useRef({ x: -100, y: -100 });
+  const nodes: any[] = [];
+  let mouse = { x: -100, y: -100 };
+  let isMobile = window.innerWidth < 768; // 📱 Check if mobile
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -27,29 +20,38 @@ export default function HeroSection() {
     canvas.width = width;
     canvas.height = height;
 
-    // 🌐 Generate Nodes (Neurons)
-    for (let i = 0; i < 100; i++) {
-      nodes.current.push({
+    // 🌐 Adjust the number of nodes based on screen size
+    const totalNodes = isMobile ? 50 : 100; // 📱 Reduce nodes for mobile
+    const linkDistance = isMobile ? 80 : 140; // 📱 Smaller link range
+    const cursorLinkDistance = isMobile ? 100 : 150; // 📱 Reduce cursor link range
+
+    for (let i = 0; i < totalNodes; i++) {
+      nodes.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        radius: Math.random() * 2 + 1, // 🔹 Smaller dots
-        speedX: Math.random() * 0.8 - 0.4, // 💨 Smooth floating motion
-        speedY: Math.random() * 0.8 - 0.4,
+        radius: Math.random() * (isMobile ? 1.5 : 2) + 1, // 📱 Smaller dots on mobile
+        speedX: Math.random() * 0.6 - 0.3, // 📱 Slower movement
+        speedY: Math.random() * 0.6 - 0.3,
       });
     }
 
     // 🎯 Cursor Tracking
-    const updateMouse = (e: MouseEvent) => {
-      mouse.current.x = e.clientX;
-      mouse.current.y = e.clientY;
+    const updateMouse = (e: MouseEvent | TouchEvent) => {
+      if ("clientX" in e) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      } else {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
     };
 
-    // 🧠 Draw Neural Network with Dynamic Linking
+    // 🧠 Draw Neural Network with Mobile Optimizations
     const draw = () => {
       if (!ctx) return;
       ctx.clearRect(0, 0, width, height);
 
-      for (let node of nodes.current) {
+      for (let node of nodes) {
         // 🏃 Nodes Move Freely
         node.x += node.speedX;
         node.y += node.speedY;
@@ -66,17 +68,17 @@ export default function HeroSection() {
       }
 
       // 🔗 Draw Dynamic Connections
-      for (let i = 0; i < nodes.current.length; i++) {
-        for (let j = i + 1; j < nodes.current.length; j++) {
-          let nodeA = nodes.current[i];
-          let nodeB = nodes.current[j];
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          let nodeA = nodes[i];
+          let nodeB = nodes[j];
           let distance = Math.hypot(nodeA.x - nodeB.x, nodeA.y - nodeB.y);
 
-          if (distance < 140) {
+          if (distance < linkDistance) {
             ctx.beginPath();
             ctx.moveTo(nodeA.x, nodeA.y);
             ctx.lineTo(nodeB.x, nodeB.y);
-            ctx.strokeStyle = `rgba(0, 255, 153, ${1 - distance / 140})`;
+            ctx.strokeStyle = `rgba(0, 255, 153, ${1 - distance / linkDistance})`;
             ctx.lineWidth = 0.8;
             ctx.stroke();
           }
@@ -84,16 +86,16 @@ export default function HeroSection() {
       }
 
       // 🖱️ Neural Connection with Cursor
-      for (let node of nodes.current) {
-        let dx = mouse.current.x - node.x;
-        let dy = mouse.current.y - node.y;
+      for (let node of nodes) {
+        let dx = mouse.x - node.x;
+        let dy = mouse.y - node.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (distance < 150) {
+        if (distance < cursorLinkDistance) {
           ctx.beginPath();
           ctx.moveTo(node.x, node.y);
-          ctx.lineTo(mouse.current.x, mouse.current.y);
-          ctx.strokeStyle = `rgba(0, 255, 255, ${1 - distance / 150})`;
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = `rgba(0, 255, 255, ${1 - distance / cursorLinkDistance})`;
           ctx.lineWidth = 1.2;
           ctx.stroke();
         }
@@ -103,9 +105,13 @@ export default function HeroSection() {
     };
 
     window.addEventListener("mousemove", updateMouse);
+    window.addEventListener("touchmove", updateMouse); // 📱 Support touch devices
     draw();
 
-    return () => window.removeEventListener("mousemove", updateMouse);
+    return () => {
+      window.removeEventListener("mousemove", updateMouse);
+      window.removeEventListener("touchmove", updateMouse);
+    };
   }, []);
 
   return (
