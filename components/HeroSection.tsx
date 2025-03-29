@@ -6,11 +6,10 @@ import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const nodes: any[] = [];
-  let mouse = { x: -100, y: -100 };
-  let isMobile = window.innerWidth < 768; // 📱 Check if mobile
-
   useEffect(() => {
+    const nodes: any[] = [];
+    const mouse = { x: -100, y: -100 };
+    const isMobile = window.innerWidth < 768; // 📱 Check if mobile
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
