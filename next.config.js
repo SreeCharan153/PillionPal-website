@@ -5,25 +5,16 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: { unoptimized: true },
-  
+  // Add webpack configuration to handle caching more reliably
   webpack: (config, { dev, isServer }) => {
     if (dev && !isServer) {
-      config.cache = false;  // Disable cache in dev
+      // Disable cache in development to prevent cache-related issues
+      config.cache = false;
     }
     return config;
   },
-
-  optimizeFonts: false, // Disable font optimization
-
-  // Force static files like Google Verification HTML to be served properly
-  async rewrites() {
-    return [
-      {
-        source: '/google3a507fef4c4724e7.html',  // Replace with your exact file name
-        destination: '/google3a507fef4c4724e7.html',
-      },
-    ]
-  },
-}
+  // Add font optimization configuration
+  optimizeFonts: false, // Disable font optimization to prevent timeout issues
+};
 
 module.exports = nextConfig;
