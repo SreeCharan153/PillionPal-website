@@ -109,6 +109,10 @@ export default function Home() {
                 >
                   Contact
                 </Link>
+
+              <a href="/certificate-verification" className="text-foreground hover:text-[#008955]">
+                Verify Certificate
+              </a>
                 <ThemeToggle />
               </div>
             </div>
