@@ -142,9 +142,9 @@ export default function Home() {
           <MissionVision />
         </div>
 
-        <div id="team">
+        {/*<div id="team">
           <Team />
-        </div>
+        </div>*/}
 
         <div id="why">
           <WhyChoose />
