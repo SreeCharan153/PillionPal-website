@@ -1,11 +1,11 @@
+// app/layout.tsx
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/react";
-import Head from "next/head";
 
-// ✅ Optimized font loading for better performance
+// Optimized Inter font
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -15,45 +15,69 @@ const inter = Inter({
   fallback: ["system-ui", "Arial", "sans-serif"],
 });
 
-// ✅ Improved metadata for better SEO & social media previews
+// Fully SEO-optimized metadata using logo.png as OG/Twitter image
 export const metadata: Metadata = {
+  metadataBase: new URL("https://pillionpal.vercel.app"),
   title: "PillionPal - Cut Cost, Not Convenience",
-  description: "Affordable & reliable bike rides at your fingertips.",
+  description: "Affordable & reliable bike rides at your fingertips. Split bike ride costs fairly with PillionPal official Website.",
   icons: {
     icon: "/logo.png",
     apple: "/logo.png",
   },
   openGraph: {
-    title: "PillionPal - Affordable Bike Rides",
+    title: "PillionPal - Cut Cost, Not Convenience",
     description: "Book affordable and reliable bike rides with PillionPal.",
-    url: "https://pillionpal.vercel.app/",
+    url: "https://pillionpal.vercel.app",
     siteName: "PillionPal",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://pillionpal.vercel.app/logo.png", // Using logo.png
         width: 1200,
         height: 630,
-        alt: "PillionPal Banner",
+        alt: "PillionPal Logo",
       },
     ],
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PillionPal - Cut Cost, Not Convenience",
+    description: "Affordable & reliable bike rides at your fingertips.",
+    images: ["https://pillionpal.vercel.app/logo.png"], // Using logo.png
+    site: "@pillionpal",
   },
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <Head>
-        {/* ✅ Google Search Console Verification */}
+      <head>
+        {/* Google Search Console Verification */}
         <meta name="google-site-verification" content="WfIZz18GHMJ7YCVbbNtXrM0QOcOR5bz7B1VX54U3-68" />
-      </Head>
+        
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://pillionpal.vercel.app/" />
+        
+        {/* JSON-LD Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "PillionPal",
+              "url": "https://pillionpal.vercel.app",
+              "logo": "https://pillionpal.vercel.app/logo.png",
+              "sameAs": ["https://www.linkedin.com/company/pillionpal"]
+            }),
+          }}
+        />
+      </head>
       <body className={`${inter.className} antialiased`}>
-        {/* ThemeProvider for Dark/Light Mode Support */}
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
 
-        {/* ✅ Optimized Analytics loading */}
         <Analytics />
       </body>
     </html>
