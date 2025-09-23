@@ -1,8 +1,17 @@
 from fastapi import FastAPI, Depends, HTTPException, Query
 import sqlite3
 from fastapi.middleware.cors import CORSMiddleware
+import os
+from supabase import create_client, Client
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI()
+
+url: str = os.environ["SUPABASE_URL"]
+key: str = os.environ["SUPABASE_KEY"]
+supabase: Client = create_client(url, key)
 
 app.add_middleware(
     CORSMiddleware,
@@ -29,14 +38,12 @@ def read_root():
     return {"message": "Welcome to the Student Certificate Verification API"}
 
 @app.get("/certificate-verification/")
-def verify_certificate(id: int = Query(...), db: sqlite3.Connection = Depends(get_db)):
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM students WHERE certificate_id = ?", (id,))
-    result = cursor.fetchone()
-    if result:
+def verify_certificate(id: int):
+    query = supabase.table('students').select('*').eq('certificate_id', id).execute()
+    if query.data:
         return {
             "message": "Certificate valid",
-            "data": dict(result)  # convert row to dict
+            "data": dict(query.data[0])  # convert row to dict
         }
     else:
         raise HTTPException(status_code=404, detail="Certificate not found")
