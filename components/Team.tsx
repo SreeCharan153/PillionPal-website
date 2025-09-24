@@ -8,26 +8,31 @@ import Image from "next/image";
 const teamMembers = [
   {
     name: "Jagadish Potela",
+    role: "Founder",
     image: "/jaga.jpg",
     linkedin: "https://www.linkedin.com/in/jagadish-potela-2b3621283/"
   },
   {
     name: "Sri Charan Machabhakthuni",
+    role: "Co-Founder",
     image: "/me.jpg",
     linkedin: "https://www.linkedin.com/in/sri-charan-machabhakthuni"
   },
   {
     name: "Nithin Pammi",
+    role: "Core Team Member",
     image: "/nithin.jpg",
     linkedin: "https://www.linkedin.com/in/nithin-pammi/"
   },
   {
     name: "Govardhan Giri Dadi",
+    role: "Core Team Member",
     image: "/gov.jpg",
     linkedin: "https://www.linkedin.com/in/dadi-govardhan-giri-a8bb872a4/"
   },
   {
     name: "Raj Kumar Varada",
+    role: "Core Team Member",
     image: "/raj.jpg",
     linkedin: "https://www.linkedin.com/in/rajkumar-varada/"
   },
@@ -97,7 +102,7 @@ export default function Team() {
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-[#00d39f] mb-1 line-clamp-2">
                       {member.name}
                     </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Core Team Member</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{member.role}</p>
                   </motion.div>
 
                   {/* 🔗 LinkedIn Button */}
