@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import logo from "../public/logo.png";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Link } from "react-scroll";
 import Head from "next/head";
 
 export default function Home() {
@@ -49,70 +48,39 @@ export default function Home() {
         <meta property="og:image" content="/pillionpal-banner.png" />
       </Head>
 
+      {/* Enable smooth scrolling via CSS */}
+      <style jsx global>{`
+        html {
+          scroll-behavior: smooth;
+        }
+      `}</style>
+
       <main className="relative">
         <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
-              <Link to="hero" smooth={true} duration={800}>
-                <div className="cursor-pointer flex items-center space-x-2">
-                  <Image
-                    src={logo}
-                    alt="PillionPal Logo"
-                    width={40}
-                    height={40}
-                    className="rounded-full"
-                  />
-                  <span className="text-[#008955] font-bold text-xl">
-                    PillionPal
-                  </span>
-                </div>
-              </Link>
+              <a href="#hero" className="cursor-pointer flex items-center space-x-2">
+                <Image
+                  src={logo}
+                  alt="PillionPal Logo"
+                  width={40}
+                  height={40}
+                  className="rounded-full"
+                />
+                <span className="text-[#008955] font-bold text-xl">PillionPal</span>
+              </a>
 
               <div className="hidden md:flex items-center space-x-8">
-                <Link
-                  to="about"
-                  smooth={true}
-                  duration={800}
-                  className="text-foreground hover:text-[#008955] cursor-pointer"
-                >
-                  About
-                </Link>
-                <Link
-                  to="mission"
-                  smooth={true}
-                  duration={800}
-                  className="text-foreground hover:text-[#008955] cursor-pointer"
-                >
-                  Mission
-                </Link>
-                <Link
-                  to="team"
-                  smooth={true}
-                  duration={800}
-                  className="text-foreground hover:text-[#008955] cursor-pointer"
-                >
-                  Team
-                </Link>
-                <Link
-                  to="why"
-                  smooth={true}
-                  duration={800}
-                  className="text-foreground hover:text-[#008955] cursor-pointer"
-                >
-                  Why Us
-                </Link>
-                <Link
-                  to="contact"
-                  smooth={true}
-                  duration={800}
-                  className="text-foreground hover:text-[#008955] cursor-pointer"
-                >
-                  Contact
-                </Link>
+                <a href="#about" className="text-foreground hover:text-[#008955] cursor-pointer">About</a>
+                <a href="#mission" className="text-foreground hover:text-[#008955] cursor-pointer">Mission</a>
+                <a href="#team" className="text-foreground hover:text-[#008955] cursor-pointer">Team</a>
+                <a href="#why" className="text-foreground hover:text-[#008955] cursor-pointer">Why Us</a>
+                <a href="#contact" className="text-foreground hover:text-[#008955] cursor-pointer">Contact</a>
 
-              <a href="/certificate-verification" className="text-foreground hover:text-[#008955]">
-                Verify Certificate
-              </a>
+                <a href="/certificate-verification" className="text-foreground hover:text-[#008955]">
+                  Verify Certificate
+                </a>
+
                 <ThemeToggle />
               </div>
             </div>
