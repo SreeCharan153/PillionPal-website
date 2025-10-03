@@ -2,8 +2,5 @@
 User-agent: *
 Allow: /
 
-# Host
-Host: https://pillionpal.vercel.app
-
 # Sitemaps
 Sitemap: https://pillionpal.vercel.app/sitemap.xml
