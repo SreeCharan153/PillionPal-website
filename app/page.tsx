@@ -81,6 +81,10 @@ export default function Home() {
                   Verify Certificate
                 </a>
 
+                <a href="/careers" className="text-foreground hover:text-[#008955]">
+                  Careers
+                </a>
+
                 <ThemeToggle />
               </div>
             </div>
