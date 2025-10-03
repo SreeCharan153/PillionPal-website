@@ -11,7 +11,7 @@ const jobOpenings = [
     department: "Engineering",
     location: "Visakhapatnam, AP",
     type: "Full-time",
-    experience: "2-4 years",
+    experience: "0-4 years",
     description: "Join our team to build the next generation of our mobile application. Work with React Native, Flutter, or native development.",
     requirements: [
       "Experience with React Native or Flutter",
@@ -25,7 +25,7 @@ const jobOpenings = [
     department: "Engineering",
     location: "Visakhapatnam, AP",
     type: "Full-time",
-    experience: "1-3 years",
+    experience: "0-3 years",
     description: "Help us scale our backend infrastructure and build robust APIs that power our ride-sharing platform.",
     requirements: [
       "Experience with Python/FastAPI or Node.js",
@@ -39,7 +39,7 @@ const jobOpenings = [
     department: "Design",
     location: "Visakhapatnam, AP",
     type: "Full-time",
-    experience: "1-3 years",
+    experience: "0-3 years",
     description: "Create intuitive and beautiful user experiences for our mobile and web applications.",
     requirements: [
       "Proficiency in Figma, Adobe XD, or Sketch",
@@ -53,7 +53,7 @@ const jobOpenings = [
     department: "Marketing",
     location: "Visakhapatnam, AP",
     type: "Full-time",
-    experience: "1-2 years",
+    experience: "0-2 years",
     description: "Drive user acquisition and engagement through digital marketing campaigns and community building.",
     requirements: [
       "Experience with digital marketing",
@@ -141,7 +141,13 @@ export default function Careers() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card className="p-6 text-center hover:shadow-xl transition-shadow bg-card">
+                <Card className="relative p-8 text-center bg-card rounded-2xl transition-all duration-300 
+                  hover:scale-105 hover:shadow-2xl border border-transparent hover:border-[#008955] overflow-hidden group 
+                  dark:bg-[#121212] dark:hover:border-green-400 dark:shadow-none">
+                    <div
+                    className="absolute inset-0 bg-gradient-to-r from-[#008955] to-transparent opacity-0 
+                    group-hover:opacity-20 transition-opacity duration-500 dark:from-green-400 dark:to-transparent dark:opacity-5"
+                  />
                   <div className="inline-block p-3 bg-[#008955] rounded-full mb-4">
                     <benefit.icon className="h-6 w-6 text-white" />
                   </div>

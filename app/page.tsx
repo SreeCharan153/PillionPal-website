@@ -13,6 +13,7 @@ import Image from "next/image";
 import logo from "../public/logo.png";
 import { ThemeToggle } from "@/components/theme-toggle";
 import Head from "next/head";
+import Link from "next/link";
 
 export default function Home() {
   const scrollToNextSection = () => {
@@ -77,13 +78,13 @@ export default function Home() {
                 <a href="#why" className="text-foreground hover:text-[#008955] cursor-pointer">Why Us</a>
                 <a href="#contact" className="text-foreground hover:text-[#008955] cursor-pointer">Contact</a>
 
-                <a href="/certificate-verification" className="text-foreground hover:text-[#008955]">
+                <Link href="/certificate-verification" className="text-foreground hover:text-[#008955] transition-colors">
                   Verify Certificate
-                </a>
+                </Link>
 
-                <a href="/careers" className="text-foreground hover:text-[#008955]">
+                <Link href="/careers" className="text-foreground hover:text-[#008955] transition-colors">
                   Careers
-                </a>
+                </Link>
 
                 <ThemeToggle />
               </div>
