@@ -20,6 +20,21 @@ const jobOpenings = [
       "Experience with state management"
     ]
   },
+{
+  title: "Data Analyst Intern",
+  department: "Data & Insights",
+  location: "Visakhapatnam, Andhra Pradesh",
+  type: "Internship",
+  experience: "0-1 years",
+  description: "Work closely with our core team to collect, analyze, and interpret data that drives strategic decisions. This internship is ideal for students eager to apply analytical skills in a fast-paced startup environment.",
+  requirements: [
+    "Proficiency in Excel or Google Sheets for data organization",
+    "Basic understanding of SQL or Python for data analysis (preferred)",
+    "Strong analytical and problem-solving mindset",
+    "Attention to detail and data accuracy",
+    "Ability to communicate insights clearly with non-technical stakeholders"
+  ]
+},
   {
     title: "Backend Developer",
     department: "Engineering",
