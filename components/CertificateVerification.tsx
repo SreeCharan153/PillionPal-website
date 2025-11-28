@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Search, CheckCircle, XCircle, Calendar, Mail, Phone, Clock } from "lucide-react";
@@ -45,7 +46,7 @@ export default function CertificateVerification() {
       const response = await fetch(
         `${API_URL}/certificate-verification/?id=${certificateId}`
       );
-      
+
       if (response.ok) {
         const data: ApiResponse = await response.json();
         setResult(data);
@@ -62,27 +63,43 @@ export default function CertificateVerification() {
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      handleVerification();
-    }
+    if (e.key === "Enter") handleVerification();
   };
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+      {/* Header & Branding */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="text-center mb-12"
       >
-        <h1 className="text-4xl font-bold text-[#008955] mb-4">
+        <div className="flex flex-col items-center mb-6">
+          <Image
+            src="/logo.png"
+            alt="PillionPal Logo"
+            width={70}
+            height={70}
+            className="rounded-full mb-3"
+          />
+          <h1 className="text-3xl font-bold text-[#008955]">PillionPal</h1>
+          <p className="text-sm text-foreground/70">Registered MSME (Udyam)</p>
+          <p className="text-sm text-foreground/70">Udyam Registration: <strong>UDYAM-AP-10-0114064</strong></p>
+          <p className="text-sm text-foreground/70">Visakhapatnam, Andhra Pradesh</p>
+        </div>
+
+        <h2 className="text-4xl font-bold text-[#008955] mb-4">
           Certificate Verification
-        </h1>
-        <p className="text-foreground/80 text-lg">
-          Enter a certificate ID to verify its authenticity
+        </h2>
+        <p className="text-foreground/80 text-lg max-w-2xl mx-auto">
+          Enter a certificate ID to verify its authenticity.  
+          This verification tool validates internship certificates issued by PillionPal.
         </p>
       </motion.div>
 
+      {/* Input Card */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -127,7 +144,7 @@ export default function CertificateVerification() {
           </div>
         </Card>
 
-        {/* Error Message */}
+        {/* Error */}
         {error && (
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -148,7 +165,7 @@ export default function CertificateVerification() {
           </motion.div>
         )}
 
-        {/* Success Result */}
+        {/* Success */}
         {result && (
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -157,6 +174,7 @@ export default function CertificateVerification() {
           >
             <Card className="p-8 border-green-200 bg-green-50 dark:bg-green-950/20 dark:border-green-800">
               <div className="space-y-6">
+
                 {/* Header */}
                 <div className="flex items-center gap-3 pb-4 border-b border-green-200 dark:border-green-800">
                   <CheckCircle className="text-green-600 dark:text-green-400" size={32} />
@@ -170,8 +188,10 @@ export default function CertificateVerification() {
                   </div>
                 </div>
 
-                {/* Certificate Details */}
+                {/* Certificate Info */}
                 <div className="grid md:grid-cols-2 gap-6">
+
+                  {/* Holder Info */}
                   <div className="space-y-4">
                     <div>
                       <h3 className="font-semibold text-green-800 dark:text-green-200 mb-2">
@@ -197,11 +217,13 @@ export default function CertificateVerification() {
                     </div>
                   </div>
 
+                  {/* Internship Info */}
                   <div className="space-y-4">
                     <div>
                       <h3 className="font-semibold text-green-800 dark:text-green-200 mb-2">
                         Internship Details
                       </h3>
+
                       <div className="space-y-2">
                         <div className="flex items-center gap-2">
                           <Clock size={18} className="text-green-600 dark:text-green-400" />
@@ -209,6 +231,7 @@ export default function CertificateVerification() {
                             Duration: {result.data.duration_of_internship}
                           </span>
                         </div>
+
                         <div className="flex items-center gap-2">
                           <Calendar size={18} className="text-green-600 dark:text-green-400" />
                           <span className="text-green-700 dark:text-green-300">
@@ -230,6 +253,14 @@ export default function CertificateVerification() {
           </motion.div>
         )}
       </motion.div>
+
+      {/* Footer */}
+      <div className="text-center mt-12 text-sm text-foreground/70">
+        <p>PillionPal © {new Date().getFullYear()}</p>
+        <p>Email: <span className="text-[#008955] font-medium">tech.collegeride@gmail.com</span></p>
+        <p>Registered MSME – Udyam Number: UDYAM-AP-10-0114064</p>
+        <p>Visakhapatnam, Andhra Pradesh, India</p>
+      </div>
     </div>
   );
 }

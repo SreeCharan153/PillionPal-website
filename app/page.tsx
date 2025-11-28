@@ -86,6 +86,10 @@ export default function Home() {
                   Careers
                 </Link>
 
+                <Link href="/company-info" className="text-foreground hover:text-[#008955] transition-colors">
+                  Company Info
+                </Link>
+
                 <ThemeToggle />
               </div>
             </div>
