@@ -17,6 +17,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
     "https://pillionpal.vercel.app",
+    "https://pillionpal.in",
     "http://localhost:3000"
 ],
     allow_credentials=True,
