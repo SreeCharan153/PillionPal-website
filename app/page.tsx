@@ -44,7 +44,7 @@ export default function Home() {
           content="Find nearby bike rides easily with PillionPal. Ride cost-effectively & safely."
         />
         <meta name="google-site-verification" content="WfIZz18GHMJ7YCVbbNtXrM0QOcOR5bz7B1VX54U3-68" />
-        <meta property="og:url" content="https://pillionpal.vercel.app/" />
+        <meta property="og:url" content="https://pillionpal.in/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/pillionpal-banner.png" />
       </Head>

@@ -2,7 +2,7 @@
   "name": "nextjs",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://sreecharan153.github.io/PillionPal-website",
+  "homepage": "https://pillionpal.in",
   "scripts": {
     "postbuild": "next-sitemap",
     "predeploy": "npm run build && npm run export",

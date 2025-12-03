@@ -18,7 +18,7 @@ const inter = Inter({
 
 // Fully SEO-optimized metadata using logo.png as OG/Twitter image
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pillionpal.vercel.app"),
+  metadataBase: new URL("https://pillionpal.in"),
   title: "PillionPal - Cut Cost, Not Convenience",
   description: "Affordable & reliable bike rides at your fingertips. Split bike ride costs fairly with PillionPal official Website.",
   icons: {
@@ -28,11 +28,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "PillionPal - Cut Cost, Not Convenience",
     description: "Book affordable and reliable bike rides with PillionPal.",
-    url: "https://pillionpal.vercel.app",
+    url: "https://pillionpal.in/",
     siteName: "PillionPal",
     images: [
       {
-        url: "https://pillionpal.vercel.app/logo.png", // Using logo.png
+        url: "https://pillionpal.in/logo.png", // Using logo.png
         width: 1200,
         height: 630,
         alt: "PillionPal Logo",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "PillionPal - Cut Cost, Not Convenience",
     description: "Affordable & reliable bike rides at your fingertips.",
-    images: ["https://pillionpal.vercel.app/logo.png"], // Using logo.png
+    images: ["https://pillionpal.in/logo.png"], // Using logo.png
     site: "@pillionpal",
   },
 };
@@ -57,7 +57,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <meta name="google-site-verification" content="WfIZz18GHMJ7YCVbbNtXrM0QOcOR5bz7B1VX54U3-68" />
         
         {/* Canonical URL */}
-        <link rel="canonical" href="https://pillionpal.vercel.app/" />
+        <link rel="canonical" href="https://pillionpal.in/" />
         
         {/* JSON-LD Structured Data */}
         <script
@@ -67,8 +67,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "PillionPal",
-              "url": "https://pillionpal.vercel.app",
-              "logo": "https://pillionpal.vercel.app/logo.png",
+              "url": "https://pillionpal.in/",
+              "logo": "https://pillionpal.in/logo.png",
               "sameAs": ["https://www.linkedin.com/company/pillionpal"]
             }),
           }}

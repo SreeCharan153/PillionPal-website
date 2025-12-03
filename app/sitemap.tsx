@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = "https://pillionpal.vercel.app";
+  const baseUrl = "https://pillionpal.in";
 
   return [
     {
