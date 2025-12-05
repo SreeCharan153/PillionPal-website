@@ -74,7 +74,7 @@ export default function Home() {
               <div className="hidden md:flex items-center space-x-8">
                 <a href="#about" className="text-foreground hover:text-[#008955] cursor-pointer">About</a>
                 <a href="#mission" className="text-foreground hover:text-[#008955] cursor-pointer">Mission</a>
-                <a href="#team" className="text-foreground hover:text-[#008955] cursor-pointer">Team</a>
+                {/*<a href="#team" className="text-foreground hover:text-[#008955] cursor-pointer">Team</a>*/}
                 <a href="#why" className="text-foreground hover:text-[#008955] cursor-pointer">Why Us</a>
                 <a href="#contact" className="text-foreground hover:text-[#008955] cursor-pointer">Contact</a>
 
@@ -119,9 +119,9 @@ export default function Home() {
           <MissionVision />
         </div>
 
-        <div id="team">
+        {/*<div id="team">
           <Team />
-        </div>
+        </div>*/}
 
         <div id="why">
           <WhyChoose />
