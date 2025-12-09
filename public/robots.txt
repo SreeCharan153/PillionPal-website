@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://pillionpal.vercel.app/sitemap.xml
+Sitemap: https://pillionpal.in/sitemap.xml

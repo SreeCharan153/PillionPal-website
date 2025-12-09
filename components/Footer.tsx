@@ -1,150 +1,168 @@
 "use client";
 
-import { Facebook, Twitter, Instagram, Linkedin, Mail, MapPin } from "lucide-react";
-import { motion } from "framer-motion";
+import { Facebook, Twitter, Instagram, Linkedin, Mail, MapPin, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const quickLinks = [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Why PillionPal", href: "/why-choose" },
+    { label: "Safety", href: "/safety" },
+    { label: "Riders", href: "/riders" },
+    { label: "Careers", href: "/careers" },
+    { label: "Certificate Verification", href: "/certificate-verification" },
+    { label: "Company Info", href: "/company-info" },
+    { label: "Contact", href: "/contact" }
+  ];
+
+  const socials = [
+    { icon: Facebook, href: null },   // show modal
+    { icon: Twitter, href: null },    // show modal
+    { icon: Instagram, href: null },  // show modal
+    { icon: Linkedin, href: "https://www.linkedin.com/company/pillionpal/" } // real page
+  ];
 
   return (
-    <footer className="relative bg-background text-foreground transition-colors duration-300">
-      {/* Gradient Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#008955]/10 via-background to-background dark:from-[#008955]/20 dark:via-background dark:to-background pointer-events-none" />
-      
-      {/* Decorative Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-1/2 -right-1/2 w-full h-full rounded-full bg-[#008955]/5 dark:bg-[#008955]/10 blur-3xl" />
-        <div className="absolute -bottom-1/2 -left-1/2 w-full h-full rounded-full bg-[#008955]/5 dark:bg-[#008955]/10 blur-3xl" />
-      </div>
-      
-      {/* Content */}
-      <div className="relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
-            
-            {/* Company Info */}
-            <div className="space-y-6">
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: false }}
-                className="flex items-center gap-3"
-              >
-                <div className="relative">
-                  <div className="absolute inset-0 bg-[#008955]/20 dark:bg-[#008955]/30 blur-lg rounded-full" />
-                  <Image
-                    src="/logo.png"
-                    alt="PillionPal Logo"
-                    width={48}
-                    height={48}
-                    className="rounded-full relative"
-                  />
-                </div>
-                <span className="text-[#008955] font-bold text-2xl">PillionPal</span>
-              </motion.div>
-              <p className="text-foreground/70 dark:text-foreground/60 text-sm leading-relaxed">
-                Making daily commuting easier, cheaper, and more accessible for everyone. Join us in revolutionizing the way people travel.
+    <>
+      {/* FOOTER */}
+      <footer className="bg-[#F5F7F4] dark:bg-[#0B0F0E] text-foreground transition-colors">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
+
+          {/* Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+
+            {/* Brand */}
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+              <div className="flex items-center gap-3 mb-4">
+                <Image src="/logo.png" alt="PillionPal Logo" width={50} height={50} className="rounded-full" />
+                <span className="text-2xl font-bold text-[#008955] dark:text-[#3DD68C]">PillionPal</span>
+              </div>
+              <p className="text-sm text-foreground/70 leading-relaxed max-w-xs">
+                Making daily commuting affordable, accessible, and smarter for everyone.
               </p>
-            </div>
+            </motion.div>
 
             {/* Quick Links */}
-            <div className="space-y-4">
-              <h3 className="font-semibold text-foreground dark:text-foreground/80 text-lg">Quick Links</h3>
-              <ul className="space-y-3">
-                {["About Us", "Our Mission", "Our Team"].map((item, index) => (
-                  <motion.li
-                    key={item}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    viewport={{ once: false }}
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}>
+              <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
+              <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+                {quickLinks.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="text-sm text-foreground/70 hover:text-[#008955] dark:hover:text-[#3DD68C] transition-colors"
                   >
-                    <Link 
-                      href={`#${item.toLowerCase().replace(/\s+/g, '')}`}
-                      className="text-foreground/70 dark:text-foreground/60 hover:text-[#008955] dark:hover:text-[#00b374] text-sm transition-all hover:translate-x-1 inline-flex"
-                    >
-                      {item}
-                    </Link>
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Contact Info */}
-            <div className="space-y-4">
-              <h3 className="font-semibold text-foreground dark:text-foreground/80 text-lg">Contact</h3>
-              <ul className="space-y-3">
-                <motion.li 
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3 }}
-                  viewport={{ once: false }}
-                  className="text-foreground/70 dark:text-foreground/60 text-sm flex items-center gap-2"
-                >
-                  <MapPin size={16} className="text-[#008955] dark:text-[#00b374]" />
-                  Visakhapatnam, Andhra Pradesh
-                </motion.li>
-                <motion.li
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: 0.1 }}
-                  viewport={{ once: false }}
-                >
-                  <a 
-                    href="mailto:tech.collegeride@gmail.com"
-                    className="text-foreground/70 dark:text-foreground/60 hover:text-[#008955] dark:hover:text-[#00b374] text-sm transition-all hover:translate-x-1 inline-flex items-center gap-2"
-                  >
-                    <Mail size={16} className="text-[#008955] dark:text-[#00b374]" />
-                    tech.collegeride@gmail.com
-                  </a>
-                </motion.li>
-              </ul>
-            </div>
-
-            {/* Social Links */}
-            <div className="space-y-4">
-              <h3 className="font-semibold text-foreground dark:text-foreground/80 text-lg">Connect With Us</h3>
-              <div className="flex gap-4">
-                {[
-                  { icon: Facebook, href: "#" },
-                  { icon: Twitter, href: "#" },
-                  { icon: Instagram, href: "#" },
-                  { icon: Linkedin, href: "https://www.linkedin.com/company/pillionpal/" }
-                ].map((social, index) => (
-                  <motion.a
-                    key={index}
-                    href={social.href}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.2, delay: index * 0.1 }}
-                    viewport={{ once: false }}
-                    className="bg-card hover:bg-[#008955]/10 dark:hover:bg-[#00b374]/20 p-2.5 rounded-full transition-colors group"
-                  >
-                    <social.icon size={20} className="text-foreground/70 dark:text-foreground/60 group-hover:text-[#008955] dark:group-hover:text-[#00b374] transition-colors" />
-                  </motion.a>
+                    {item.label}
+                  </Link>
                 ))}
               </div>
-            </div>
+            </motion.div>
+
+            {/* Contact */}
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.2 }}>
+              <h3 className="font-semibold text-lg mb-4">Contact</h3>
+              <ul className="space-y-3 text-sm text-foreground/70">
+                <li className="flex items-center gap-2">
+                  <MapPin size={16} className="text-[#008955] dark:text-[#3DD68C]" />
+                  Visakhapatnam, Andhra Pradesh
+                </li>
+                <li>
+                  <a
+                    href="mailto:founder@pillionpal.com"
+                    className="flex items-center gap-2 hover:text-[#008955] dark:hover:text-[#3DD68C]"
+                  >
+                    <Mail size={16} className="text-[#008955] dark:text-[#3DD68C]" />
+                    founder@pillionpal.com
+                  </a>
+                </li>
+              </ul>
+            </motion.div>
+
+            {/* Socials */}
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.3 }}>
+              <h3 className="font-semibold text-lg mb-4">Follow Us</h3>
+              <div className="flex gap-4">
+                {socials.map((s, i) => (
+                  <motion.button
+                    key={i}
+                    whileHover={{ scale: 1.1 }}
+                    onClick={() => {
+                      if (s.href) window.open(s.href, "_blank");
+                      else setModalOpen(true);
+                    }}
+                    className="p-2 rounded-full border border-foreground/10 hover:border-[#008955] dark:hover:border-[#3DD68C] transition-colors"
+                  >
+                    <s.icon size={20} className="text-foreground/70 hover:text-[#008955] dark:hover:text-[#3DD68C]" />
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
           </div>
 
-          {/* Bottom Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="relative mt-16 pt-8 border-t border-foreground/10 dark:border-foreground/20"
-          >
-            <p className="text-sm text-foreground/70 dark:text-foreground/60">
+          {/* Bottom */}
+          <div className="mt-16 pt-6 border-t border-foreground/10">
+            <p className="text-center text-sm text-foreground/60">
               © {currentYear} PillionPal. All rights reserved.
             </p>
-          </motion.div>
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+
+      {/* MODAL */}
+      <AnimatePresence>
+        {modalOpen && (
+          <motion.div
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[999]"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white dark:bg-[#0B0F0E] rounded-2xl p-6 w-full max-w-sm shadow-xl border border-foreground/10 relative"
+            >
+              <button
+                className="absolute top-3 right-3 text-foreground/60 hover:text-foreground"
+                onClick={() => setModalOpen(false)}
+              >
+                <X size={20} />
+              </button>
+
+              <h2 className="text-xl font-bold text-[#008955] dark:text-[#3DD68C] mb-2">
+                Coming Soon 🚧
+              </h2>
+
+              <p className="text-sm text-foreground/70 mb-5">
+                We&apos;re not active on this platform yet.  
+                Follow us on LinkedIn for official updates!
+              </p>
+
+              <div className="flex justify-end gap-3">
+                <button
+                  onClick={() => setModalOpen(false)}
+                  className="px-4 py-2 text-sm rounded-lg bg-gray-200 dark:bg-gray-800"
+                >
+                  Close
+                </button>
+
+                <button
+                  onClick={() => window.open("https://www.linkedin.com/company/pillionpal/", "_blank")}
+                  className="px-4 py-2 text-sm rounded-lg bg-[#008955] text-white dark:bg-[#3DD68C] dark:text-black"
+                >
+                  LinkedIn
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

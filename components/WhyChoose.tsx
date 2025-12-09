@@ -2,80 +2,87 @@
 
 import { motion } from "framer-motion";
 import { Wallet, Leaf, Clock } from "lucide-react";
-import { Card } from "@/components/ui/card";
 
 const features = [
   {
     icon: Wallet,
     title: "Budget-Friendly Rides",
-    description: "Enjoy cost-effective rides designed for students and office-goers without breaking the bank.",
+    description:
+      "Enjoy cost-effective rides designed for students and office commuters without breaking the bank.",
   },
   {
     icon: Leaf,
-    title: "Sustainable & Eco-Friendly",
-    description: "Choose a greener way to commute and contribute to a cleaner environment.",
+    title: "Eco-Friendly Commuting",
+    description:
+      "Reduce carbon emissions and support a greener future with every shared ride.",
   },
   {
     icon: Clock,
-    title: "Beat the Traffic",
-    description: "Reach your destination faster than public transport with our reliable bike-sharing service.",
+    title: "Beat Traffic Jams",
+    description:
+      "Navigate through congestion and reach your destination faster using two-wheelers.",
   },
 ];
 
 export default function WhyChoose() {
   return (
-    <section className="relative py-24 bg-background transition-colors duration-300">
-      {/* Subtle Pattern Overlay (Light/Dark Mode Aware) */}
-      <div className="absolute inset-0 bg-[url('/pattern.svg')] opacity-10 dark:opacity-5 pointer-events-none"></div>
+    <section
+      id="why"
+      className="relative py-24 bg-white dark:bg-[#0B0F0E] transition-colors duration-300"
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
-      {/* Light Mode Glow Effect */}
-      <div className="absolute -top-20 left-1/2 w-96 h-96 bg-[#008955] opacity-20 blur-3xl rounded-full transform -translate-x-1/2 dark:opacity-10"></div>
-
-      <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
-        <motion.div
+        {/* Title */}
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl sm:text-4xl font-extrabold text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-[#008955] text-center mb-12 dark:text-green-400">
+          <span className="text-[#008955] dark:text-[#3DD68C]">
             Why Choose PillionPal?
-          </h2>
+          </span>
+        </motion.h2>
 
-          <div className="grid gap-10 md:grid-cols-3">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
-                viewport={{ once: true }}
-              >
-                <Card
-                  className="relative p-8 text-center bg-card rounded-2xl transition-all duration-300 
-                  hover:scale-105 hover:shadow-2xl border border-transparent hover:border-[#008955] overflow-hidden group 
-                  dark:bg-[#121212] dark:hover:border-green-400 dark:shadow-none"
-                >
-                  {/* Gradient Hover Effect (Different in Dark Mode) */}
-                  <div
-                    className="absolute inset-0 bg-gradient-to-r from-[#008955] to-transparent opacity-0 
-                    group-hover:opacity-20 transition-opacity duration-500 dark:from-green-400 dark:to-transparent dark:opacity-5"
-                  />
-                  <div className="inline-flex items-center justify-center w-14 h-14 bg-[#008955] rounded-full mb-6 
-                    transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg dark:bg-green-400">
-                    <feature.icon className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-[#008955] mb-3 transition-all duration-300 group-hover:scale-105 dark:text-green-400">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed transition-all duration-300 group-hover:opacity-90 dark:text-gray-300">
-                    {feature.description}
-                  </p>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        {/* Features Grid */}
+        <div className="grid gap-10 md:grid-cols-3">
+          {features.map((feature, index) => (
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              viewport={{ once: true }}
+              className="group p-8 rounded-2xl shadow-md border border-gray-200 
+                         dark:border-white/10 bg-white dark:bg-[#111A18] 
+                         transition-all duration-300 hover:shadow-xl"
+            >
+              {/* Icon */}
+              <div className="inline-flex items-center justify-center w-14 h-14 
+                              rounded-full bg-[#008955]/10 dark:bg-[#3DD68C]/10 mb-6">
+                <feature.icon className="h-8 w-8 text-[#008955] dark:text-[#3DD68C]" />
+              </div>
+
+              {/* Title */}
+              <h3 className="text-xl font-semibold mb-3 text-[#008955] dark:text-[#3DD68C]">
+                {feature.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                {feature.description}
+              </p>
+
+              {/* Subtle Hover Overlay */}
+              <div
+                className="absolute inset-0 opacity-0 
+                           group-hover:opacity-100 transition-opacity 
+                           bg-[#008955]/5 dark:bg-[#3DD68C]/5 rounded-2xl pointer-events-none"
+              />
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
