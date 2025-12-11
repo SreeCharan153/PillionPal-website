@@ -52,7 +52,7 @@ export default function CompanyInfoPage() {
               <li><strong>Udyam Registration Number:</strong> UDYAM-AP-10-0114064</li>
               <li><strong>Date of Establishment:</strong> 01 September 2024</li>
               <li><strong>Location:</strong> Visakhapatnam, Andhra Pradesh, India</li>
-              <li><strong>Email:</strong> tech.collegeride@gmail.com</li>
+              <li><strong>Email:</strong> founder@pillionpal.com</li>
             </ul>
           </Card>
         </motion.div>
