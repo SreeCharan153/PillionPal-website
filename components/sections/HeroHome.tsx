@@ -55,7 +55,6 @@ export default function HeroHome() {
       ctx.fillStyle = isDarkMode ? "#0B0F0E" : "#F5F7F4";
       ctx.fillRect(0, 0, width, height);
 
-      // Node movement
       nodes.forEach((node) => {
         node.x += node.speedX;
         node.y += node.speedY;
@@ -66,12 +65,11 @@ export default function HeroHome() {
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
         ctx.fillStyle = isDarkMode
-          ? "rgba(61, 214, 140, 0.6)" // mint
-          : "rgba(0, 137, 85, 0.6)";  // brand green
+          ? "rgba(61, 214, 140, 0.6)"
+          : "rgba(0, 137, 85, 0.6)";
         ctx.fill();
       });
 
-      // Node linking
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const a = nodes[i];
@@ -91,7 +89,6 @@ export default function HeroHome() {
         }
       }
 
-      // Cursor linking
       nodes.forEach((node) => {
         const dx = mouse.x - node.x;
         const dy = mouse.y - node.y;
@@ -126,7 +123,7 @@ export default function HeroHome() {
   return (
     <section
       className={`
-        relative min-h-screen flex items-center justify-center overflow-hidden 
+        relative min-h-screen flex items-center justify-center overflow-hidden
         pt-24 pb-20 transition-colors duration-500
         ${isDarkMode ? "bg-[#0B0F0E]" : "bg-[#F5F7F4]"}
       `}
@@ -134,7 +131,7 @@ export default function HeroHome() {
       {/* Canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" />
 
-      {/* Hero Content */}
+      {/* Content */}
       <div className="relative max-w-4xl mx-auto px-6 text-center z-10 space-y-8">
         <motion.h1
           initial={{ opacity: 0, y: 35 }}
@@ -159,15 +156,17 @@ export default function HeroHome() {
             ${isDarkMode ? "text-gray-300" : "text-gray-700"}
           `}
         >
-          Affordable & reliable bike rides powered by{" "}
+          PillionPal connects riders and pillions traveling along similar routes
+          and reduces commuting costs without adding friction. Trip expenses are
+          calculated transparently using our{" "}
           <span
             className={`font-semibold ${
               isDarkMode ? "text-[#3DD68C]" : "text-[#008955]"
             }`}
           >
-            FairSplit Pricing
+            FairSplit pricing engine
           </span>
-          . The smarter way to move across your city.
+          , ensuring affordability without compromising everyday convenience.
         </motion.p>
 
         <motion.div
@@ -183,7 +182,7 @@ export default function HeroHome() {
             "
             onClick={() => window.location.assign("/about")}
           >
-            Learn More
+            See How FairSplit Works
           </Button>
         </motion.div>
       </div>
