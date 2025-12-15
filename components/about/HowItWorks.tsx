@@ -6,18 +6,18 @@ import { MapPin, Bike, SplitSquareHorizontal } from "lucide-react";
 const steps = [
   {
     icon: MapPin,
-    title: "Set Your Route",
-    desc: "Enter where you're heading. Riders and bike owners nearby get matched instantly.",
+    title: "Define Your Route",
+    desc: "Users specify their starting point and destination. The system identifies compatible riders and pillions traveling along similar routes.",
   },
   {
     icon: Bike,
-    title: "Share the Ride",
-    desc: "Hop on with a trusted rider or take someone along. Save time and beat traffic.",
+    title: "Coordinate the Ride",
+    desc: "Riders and pillions connect to coordinate the journey, reducing travel costs and optimizing daily commutes.",
   },
   {
     icon: SplitSquareHorizontal,
-    title: "FairSplit Pricing",
-    desc: "No bargaining. No confusion. Costs are automatically split based on distance and bike mileage.",
+    title: "FairSplit Cost Calculation",
+    desc: "Trip costs are calculated automatically using the FairSplit engine, factoring in travel distance, vehicle mileage, and bike model for transparent cost sharing.",
   },
 ];
 
@@ -30,15 +30,16 @@ export default function HowItWorks() {
         overflow-hidden
       "
     >
-      {/* pattern */}
-      <div className="
-        absolute inset-0 opacity-[0.05] pointer-events-none
-        bg-[url('/pattern.svg')] dark:bg-[url('/pattern-dark.svg')]
-        bg-cover bg-center
-      " />
+      {/* Background pattern */}
+      <div
+        className="
+          absolute inset-0 opacity-[0.05] pointer-events-none
+          bg-[url('/pattern.svg')] dark:bg-[url('/pattern-dark.svg')]
+          bg-cover bg-center
+        "
+      />
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        
         {/* Title */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -86,16 +87,23 @@ export default function HowItWorks() {
                 transition-all
               "
             >
-              <div className="
-                w-16 h-16 rounded-full flex items-center justify-center 
-                bg-[#008955]/15 dark:bg-[#3DD68C]/15 mb-6 mx-auto
-              ">
+              <div
+                className="
+                  w-16 h-16 rounded-full flex items-center justify-center
+                  bg-[#008955]/15 dark:bg-[#3DD68C]/15
+                  mb-6 mx-auto
+                "
+              >
                 <step.icon className="h-8 w-8 text-[#008955] dark:text-[#3DD68C]" />
               </div>
 
-              <h3 className="
-                text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3
-              ">
+              <h3
+                className="
+                  text-xl font-semibold
+                  text-gray-900 dark:text-gray-100
+                  mb-3
+                "
+              >
                 {step.title}
               </h3>
 

@@ -13,7 +13,7 @@ export default function MissionVision() {
         overflow-hidden
       "
     >
-      {/* Soft pattern background */}
+      {/* Background pattern */}
       <div
         className="
           absolute inset-0 opacity-[0.08] pointer-events-none
@@ -22,7 +22,7 @@ export default function MissionVision() {
         "
       />
 
-      {/* Subtle radial cleanup */}
+      {/* Radial fade */}
       <div
         className="
           absolute inset-0 pointer-events-none
@@ -32,7 +32,6 @@ export default function MissionVision() {
       />
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        
         {/* Section title */}
         <motion.h2
           initial={{ opacity: 0, y: 25 }}
@@ -62,17 +61,16 @@ export default function MissionVision() {
           "
         />
 
-        {/* Content grid */}
+        {/* Content */}
         <div className="grid md:grid-cols-2 gap-10 mt-16">
-          
-          {/* Mission Card */}
+          {/* Mission */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="
-              relative p-8 rounded-2xl
+              p-8 rounded-2xl
               bg-white/70 dark:bg-[#101715]/60
               border border-[#008955]/20 dark:border-[#3DD68C]/20
               shadow-sm backdrop-blur-xl
@@ -89,30 +87,26 @@ export default function MissionVision() {
               <Target className="h-8 w-8 text-[#008955] dark:text-[#3DD68C]" />
             </div>
 
-            <h3
-              className="
-                text-2xl font-semibold mb-4
-                text-gray-900 dark:text-gray-100
-              "
-            >
+            <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
               Our Mission
             </h3>
 
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              To make commuting more accessible, affordable, and time-efficient.  
-              PillionPal empowers riders and bike owners with a fair, reliable,  
-              and transparent way to share travel costs while reducing daily stress.
+              To enable affordable and transparent daily commuting by connecting
+              riders and pillions traveling along similar routes. PillionPal is
+              designed to reduce individual travel costs while ensuring clarity,
+              fairness, and accountability in cost sharing.
             </p>
           </motion.div>
 
-          {/* Vision Card */}
+          {/* Vision */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
             className="
-              relative p-8 rounded-2xl
+              p-8 rounded-2xl
               bg-white/70 dark:bg-[#101715]/60
               border border-[#008955]/20 dark:border-[#3DD68C]/20
               shadow-sm backdrop-blur-xl
@@ -129,22 +123,17 @@ export default function MissionVision() {
               <Leaf className="h-8 w-8 text-[#008955] dark:text-[#3DD68C]" />
             </div>
 
-            <h3
-              className="
-                text-2xl font-semibold mb-4
-                text-gray-900 dark:text-gray-100
-              "
-            >
+            <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
               Our Vision
             </h3>
 
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              To build a sustainable mobility ecosystem where shared rides  
-              reduce traffic congestion, minimize pollution, and strengthen  
-              communities — creating a smarter way to move across cities.
+              To build a sustainable, shared mobility ecosystem that reduces
+              traffic congestion and environmental impact while becoming a
+              reliable commuting option for campuses and urban communities
+              across India.
             </p>
           </motion.div>
-
         </div>
       </div>
     </section>
