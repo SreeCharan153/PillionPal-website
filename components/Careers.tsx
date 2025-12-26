@@ -230,7 +230,7 @@ export default function Careers() {
                         mt-4 lg:mt-0
                       "
                       onClick={() =>
-                        (window.location.href = `mailto:tech.collegeride@gmail.com?subject=Application for ${job.title}`)
+                        (window.location.href = `mailto:support@pillionpal.in?subject=Application for ${job.title}`)
                       }
                     >
                       Apply Now
@@ -283,7 +283,7 @@ export default function Careers() {
               "
               onClick={() =>
                 (window.location.href =
-                  "mailto:tech.collegeride@gmail.com?subject=General Application")
+                  "mailto:support@pillionpal.in?subject=General Application")
               }
             >
               <Mail className="mr-2 h-4 w-4" />

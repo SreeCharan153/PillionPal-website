@@ -276,7 +276,7 @@ export default function CertificateVerification() {
           <p className="mt-2">
             Contact:{" "}
             <span className="text-[#008955] dark:text-[#3DD68C] font-medium">
-              founder@pillionpal.in
+              support@pillionpal.in
             </span>
           </p>
         </div>

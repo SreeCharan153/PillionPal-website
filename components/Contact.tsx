@@ -21,7 +21,7 @@ export default function Contact() {
         {/* Contact Cards */}
         <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
           {/* Email Card */}
-          <a href="mailto:tech.collegeride@gmail.com" rel="noopener noreferrer">
+          <a href="mailto:support@pillionpal.in" rel="noopener noreferrer">
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
@@ -30,7 +30,7 @@ export default function Contact() {
               <Mail className="h-12 w-12 mx-auto mb-4 text-[#008955] dark:text-[#00ff99] transition-colors" />
               <h3 className="text-2xl font-semibold mb-2">Email Us</h3>
               <p className="text-lg transition-all hover:underline">
-                tech.collegeride@gmail.com
+                support@pillionpal.in
               </p>
             </motion.div>
           </a>

@@ -39,7 +39,7 @@ export default function ContactPage() {
       message,
     ];
 
-    const mailto = `mailto:founder@pillionpal.com?subject=${encodeURIComponent(
+    const mailto = `mailto:support@pillionpal.in?subject=${encodeURIComponent(
       mailSubject
     )}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
 
@@ -165,10 +165,10 @@ export default function ContactPage() {
                   <div>
                     <p className="font-medium">Email</p>
                     <a
-                      href="mailto:founder@pillionpal.com"
+                      href="mailto:support@pillionpal.in"
                       className="text-[#008955] dark:text-[#3DD68C] hover:underline"
                     >
-                      founder@pillionpal.com
+                      support@pillionpal.in
                     </a>
                   </div>
                 </div>

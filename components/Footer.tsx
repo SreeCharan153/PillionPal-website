@@ -112,14 +112,14 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
-                    href="mailto:founder@pillionpal.com"
+                    href="mailto:support@pillionpal.in"
                     className="flex items-center gap-2 hover:text-[#008955] dark:hover:text-[#3DD68C]"
                   >
                     <Mail
                       size={16}
                       className="text-[#008955] dark:text-[#3DD68C]"
                     />
-                    founder@pillionpal.com
+                    support@pillionpal.in
                   </a>
                 </li>
               </ul>
