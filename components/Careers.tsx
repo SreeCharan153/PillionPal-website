@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Clock, Users, Briefcase, Mail, Rocket, Target } from "lucide-react";
 import { useTheme } from "next-themes";
 
-
 // ----------------------
 // JOB OPENINGS
 // ----------------------
@@ -16,7 +15,7 @@ const jobOpenings = [
     department: "Engineering",
     location: "Remote",
     type: "Internship",
-    experience: "0–1 years",
+    experience: "0-1 years",
     description:
       "Work on real APIs — authentication, FairSplit pricing engine, ride matching logic, and rider-pillion flows.",
     requirements: [
@@ -24,33 +23,33 @@ const jobOpenings = [
       "Understanding of FastAPI or Flask",
       "SQL basics",
       "Git/GitHub familiarity",
-      "Strong desire to learn and ship"
-    ]
+      "Strong desire to learn and ship",
+    ],
   },
   {
     title: "Frontend Intern (React/Next.js)",
     department: "Engineering",
     location: "Remote",
     type: "Internship",
-    experience: "0–1 years",
+    experience: "0-1 years",
     description:
       "Build fast, clean UI for onboarding, dashboards, rides, and connect them with our backend APIs.",
     requirements: [
       "React or Next.js basics",
       "API integration understanding",
       "Tailwind CSS familiarity",
-      "Good eye for UI"
-    ]
+      "Good eye for UI",
+    ],
   },
   {
     title: "UI/UX Design Intern",
     department: "Design",
     location: "Remote",
     type: "Internship",
-    experience: "0–1 years",
+    experience: "0-1 years",
     description:
       "Design modern, minimal digital experiences for PillionPal. Work on full app & web flows.",
-    requirements: ["Figma basics", "Understanding of UX flows", "Creativity", "Mobile-first mindset"]
+    requirements: ["Figma basics", "Understanding of UX flows", "Creativity", "Mobile-first mindset"],
   },
   {
     title: "Data Analyst Intern",
@@ -64,9 +63,9 @@ const jobOpenings = [
       "Excel/Sheets proficiency",
       "SQL or Python basics",
       "Attention to detail",
-      "Ability to derive insights"
-    ]
-  }
+      "Ability to derive insights",
+    ],
+  },
 ];
 
 // ----------------------
@@ -76,24 +75,46 @@ const benefits = [
   {
     icon: Rocket,
     title: "Real Startup Exposure",
-    description: "Work in a fast-moving environment where your decisions actually matter."
+    description: "Work in a fast-moving environment where your decisions actually matter.",
   },
   {
     icon: Target,
     title: "Purpose-Driven Work",
-    description: "You help reduce daily commute stress for students & professionals."
+    description: "You help reduce daily commute stress for students & professionals.",
   },
   {
     icon: Clock,
     title: "Skill Acceleration",
-    description: "Hands-on projects, reviews, sprints — no boring training sessions."
+    description: "Hands-on projects, reviews, sprints — no boring training sessions.",
   },
   {
     icon: Users,
     title: "Work With the Core Team",
-    description: "Direct mentorship from the founder & engineers building the platform."
-  }
+    description: "Direct mentorship from the founder & engineers building the platform.",
+  },
 ];
+
+// ----------------------
+// GMAIL HELPER
+// ----------------------
+const openGmailCompose = ({
+  to,
+  subject,
+  body = "",
+}: {
+  to: string;
+  subject: string;
+  body?: string;
+}) => {
+  const url =
+    "https://mail.google.com/mail/?" +
+    "view=cm&fs=1" +
+    `&to=${encodeURIComponent(to)}` +
+    `&su=${encodeURIComponent(subject)}` +
+    `&body=${encodeURIComponent(body)}`;
+
+  window.open(url, "_blank", "noopener,noreferrer");
+};
 
 export default function Careers() {
   const { theme } = useTheme();
@@ -108,7 +129,6 @@ export default function Careers() {
       `}
     >
       <div className="max-w-7xl mx-auto px-6">
-
         {/* HERO */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -116,25 +136,18 @@ export default function Careers() {
           transition={{ duration: 0.7 }}
           className="text-center mb-20"
         >
-          <h1
-            className="
-              text-4xl md:text-5xl font-extrabold 
-              text-[#008955] dark:text-[#3DD68C] mb-6
-            "
-          >
+          <h1 className="text-4xl md:text-5xl font-extrabold text-[#008955] dark:text-[#3DD68C] mb-6">
             Build the Future of Daily Mobility
           </h1>
           <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-            Join PillionPal and help shape a cleaner, smarter, and more affordable way for
-            millions to commute every day.
+            Join PillionPal and help shape a cleaner, smarter, and more affordable way for millions to
+            commute every day.
           </p>
         </motion.div>
 
-        {/* BENEFITS SECTION */}
+        {/* BENEFITS */}
         <section className="mb-20">
-          <h2
-            className="text-3xl font-bold text-[#008955] dark:text-[#3DD68C] text-center mb-12"
-          >
+          <h2 className="text-3xl font-bold text-[#008955] dark:text-[#3DD68C] text-center mb-12">
             Why Work With Us?
           </h2>
 
@@ -147,20 +160,8 @@ export default function Careers() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card
-                  className="
-                    p-8 rounded-2xl shadow-lg hover:shadow-xl 
-                    bg-white dark:bg-[#111A18]
-                    border border-[#008955]/20 dark:border-[#3DD68C]/20
-                    text-center transition-all
-                  "
-                >
-                  <div
-                    className="
-                      p-4 rounded-full bg-[#008955] dark:bg-[#3DD68C] 
-                      inline-block mb-4
-                    "
-                  >
+                <Card className="p-8 rounded-2xl shadow-lg hover:shadow-xl bg-white dark:bg-[#111A18] border border-[#008955]/20 dark:border-[#3DD68C]/20 text-center transition-all">
+                  <div className="p-4 rounded-full bg-[#008955] dark:bg-[#3DD68C] inline-block mb-4">
                     <b.icon className="h-6 w-6 text-white dark:text-black" />
                   </div>
                   <h3 className="text-xl font-semibold text-[#008955] dark:text-[#3DD68C] mb-3">
@@ -173,12 +174,9 @@ export default function Careers() {
           </div>
         </section>
 
-
-        {/* INTERNSHIP OPENINGS */}
+        {/* ROLES */}
         <section>
-          <h2
-            className="text-3xl font-bold text-[#008955] dark:text-[#3DD68C] text-center mb-16"
-          >
+          <h2 className="text-3xl font-bold text-[#008955] dark:text-[#3DD68C] text-center mb-16">
             Internship Roles — Jan 2025 Intake
           </h2>
 
@@ -191,16 +189,8 @@ export default function Careers() {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card
-                  className="
-                    p-10 rounded-2xl shadow-lg hover:shadow-xl
-                    bg-white dark:bg-[#111A18]
-                    border border-[#008955]/20 dark:border-[#3DD68C]/20
-                    transition-all
-                  "
-                >
+                <Card className="p-10 rounded-2xl shadow-lg hover:shadow-xl bg-white dark:bg-[#111A18] border border-[#008955]/20 dark:border-[#3DD68C]/20 transition-all">
                   <div className="flex flex-col lg:flex-row justify-between mb-6">
-
                     <div>
                       <h3 className="text-2xl font-bold text-[#008955] dark:text-[#3DD68C]">
                         {job.title}
@@ -223,14 +213,13 @@ export default function Careers() {
                     </div>
 
                     <Button
-                      className="
-                        bg-[#008955] hover:bg-[#006d44] 
-                        dark:bg-[#3DD68C] dark:hover:bg-[#32c07d]
-                        dark:text-black
-                        mt-4 lg:mt-0
-                      "
+                      className="bg-[#008955] hover:bg-[#006d44] dark:bg-[#3DD68C] dark:hover:bg-[#32c07d] dark:text-black mt-4 lg:mt-0"
                       onClick={() =>
-                        (window.location.href = `mailto:support@pillionpal.in?subject=Application for ${job.title}`)
+                        openGmailCompose({
+                          to: "support@pillionpal.in",
+                          subject: `Application for ${job.title}`,
+                          body: `Hi PillionPal Team,\n\nI would like to apply for the position of ${job.title}.\n\nPlease find my resume attached.\n\nThanks,\n[Your Name]`,
+                        })
                       }
                     >
                       Apply Now
@@ -259,31 +248,25 @@ export default function Careers() {
 
         {/* CONTACT */}
         <section className="mt-20">
-          <Card
-            className="
-              p-10 text-center rounded-2xl shadow-lg bg-white dark:bg-[#111A18]
-              border border-[#008955]/20 dark:border-[#3DD68C]/20
-            "
-          >
+          <Card className="p-10 text-center rounded-2xl shadow-lg bg-white dark:bg-[#111A18] border border-[#008955]/20 dark:border-[#3DD68C]/20">
             <h2 className="text-2xl font-bold text-[#008955] dark:text-[#3DD68C] mb-4">
               Don&apos;t See a Perfect Match?
             </h2>
             <p className="text-gray-700 dark:text-gray-300 mb-6">
-              We&apos;re always open to passionate contributors.  
-              Send your resume and we&apos;ll explore the right fit for you.
+              We&apos;re always open to passionate contributors. Send your resume and we&apos;ll
+              explore the right fit for you.
             </p>
 
             <Button
               variant="outline"
-              className="
-                border-[#008955] text-[#008955] 
-                hover:bg-[#008955] hover:text-white
-                dark:border-[#3DD68C] dark:text-[#3DD68C]
-                dark:hover:bg-[#3DD68C] dark:hover:text-black
-              "
+              className="border-[#008955] text-[#008955] hover:bg-[#008955] hover:text-white dark:border-[#3DD68C] dark:text-[#3DD68C] dark:hover:bg-[#3DD68C] dark:hover:text-black"
               onClick={() =>
-                (window.location.href =
-                  "mailto:support@pillionpal.in?subject=General Application")
+                openGmailCompose({
+                  to: "support@pillionpal.in",
+                  subject: "General Application",
+                  body:
+                    "Hi PillionPal Team,\n\nI would like to apply for opportunities at PillionPal.\n\nPlease find my resume attached.\n\nThanks,\n[Your Name]",
+                })
               }
             >
               <Mail className="mr-2 h-4 w-4" />
